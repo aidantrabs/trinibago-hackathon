@@ -37,15 +37,40 @@
 
 **A first-timer's guide to Trinidad & Tobago's cultural festivals.**
 
-Not a calendar. Not an encyclopedia. A practical guide that answers: *"I've never been to this festival — what do I need to know?"*
+T&T has over 20 cultural festivals spanning African, Indian, Indigenous, European, and Chinese heritage. Most people only know Carnival. We're building a platform that helps anyone — locals who've never attended, diaspora returning home, tourists looking for authentic experiences — discover and attend these festivals with confidence.
 
-**Features:**
-- Festival calendar with filters (month, region, heritage type)
-- Festival detail pages with history, what to expect, how to participate, logistics
-- "This Week in T&T Culture" digest section
-- Community memory submissions
-- Email reminders for upcoming festivals
-- PWA (installable, works offline)
+The key insight: people don't just need to know *when* a festival happens. They need to know *what it is*, *what to expect*, and *how to participate appropriately*. That's the gap we're filling.
+
+### What We're Building
+
+**Festival Calendar**
+- Browse all festivals by month, region, or heritage type
+- See what's coming up in the next few weeks
+- Filter to find festivals that match your interests
+
+**First-Timer's Guides**
+- Each festival gets a dedicated page with real depth
+- History and cultural significance (not Wikipedia-level — accessible)
+- What you'll actually see, hear, and experience
+- How to participate respectfully (dress code, etiquette, what's appropriate for outsiders)
+- Practical info: where to park, what to bring, best spots to watch
+
+**"This Week in T&T Culture"**
+- Homepage section showing what's happening soon
+- Email digest for subscribers (weekly)
+
+**Community Memories**
+- People can submit their own festival memories
+- Adds authenticity and personal stories
+- No account required — low friction
+
+**Email Reminders**
+- Subscribe to get notified before festivals you care about
+- "Hosay is in 2 weeks" type notifications
+
+**PWA**
+- Installable on phone
+- Works offline (for when you're at a festival with bad signal)
 
 ---
 
@@ -112,10 +137,10 @@ T&T has 20+ cultural festivals across African, Indian, Indigenous, and other her
 
 ```
 hackathon-project/
-├── frontend/                # Tevin sets this up
-│   └── ...                  # SvelteKit + Tailwind + shadcn-svelte
+├── frontend/                # Tevin owns this
+│   └── ...                  # SvelteKit + Tailwind
 │
-├── backend/
+├── backend/                 # Aidan owns this
 │   ├── cmd/
 │   │   └── server/
 │   │       └── main.go
@@ -138,17 +163,18 @@ hackathon-project/
 └── README.md
 ```
 
-| Layer | Tech |
-|:------|:-----|
-| Frontend | SvelteKit + Tailwind + shadcn-svelte |
-| Backend | Go + Echo |
-| Database | PostgreSQL (Neon in prod, Docker locally) |
-| Migrations | goose |
-| Storage | Cloudflare R2 (if needed) |
-| Hosting | Fly.io (backend) + Cloudflare Pages (frontend) |
-| Email | Resend |
+| Layer | Tech | Owner |
+|:------|:-----|:------|
+| Frontend | SvelteKit + Tailwind | Tevin |
+| Frontend Hosting | Cloudflare Workers/Pages | Tevin |
+| Storage | Cloudflare R2 | Tevin |
+| Backend | Go + Echo | Aidan |
+| Backend Hosting | Fly.io | Aidan |
+| Database | PostgreSQL (Docker locally, Fly Postgres in prod) | Aidan |
+| Migrations | goose | Aidan |
+| Email | Resend | Aidan |
 
-### How Frontend and Backend Connect
+### How They Connect
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -156,38 +182,65 @@ hackathon-project/
 │                                                             │
 │   Frontend (localhost:5173)                                 │
 │        │                                                    │
-│        │  fetch('http://localhost:8080/api/festivals')      │
+│        │  fetch('http://localhost:8080/api/...')            │
 │        ▼                                                    │
-│   Backend (localhost:8080)  ◄── Docker container            │
+│   Backend (localhost:8080)  ◄── go run                      │
 │        │                                                    │
-│        │  SQL queries                                       │
 │        ▼                                                    │
-│   PostgreSQL (localhost:5432)  ◄── Docker container         │
+│   PostgreSQL (localhost:5432)  ◄── Docker                   │
 │                                                             │
 └─────────────────────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────────────────────┐
 │                       PRODUCTION                            │
 │                                                             │
-│   Frontend ([YOUR-APP].pages.dev)                           │
+│   Frontend  ◄── Cloudflare Workers/Pages                    │
 │        │                                                    │
-│        │  fetch('https://[YOUR-API].fly.dev/api/festivals') │
+│        │  fetch('https://[API].fly.dev/api/...')            │
 │        ▼                                                    │
-│   Backend (api.ourapp.app)  ◄── Fly.io                      │
+│   Backend  ◄── Fly.io                                       │
 │        │                                                    │
 │        ▼                                                    │
-│   PostgreSQL  ◄── Neon                                      │
+│   PostgreSQL  ◄── Fly Postgres                              │
 │                                                             │
 └─────────────────────────────────────────────────────────────┘
 ```
 
-**The connection is simple:**
+### Docker (Local Dev)
 
-1. Frontend makes HTTP requests to backend API endpoints
-2. Backend handles requests, queries database, returns JSON
-3. CORS middleware on backend allows requests from frontend origin
+Only Postgres runs in Docker. Go backend runs directly for faster iteration.
 
-**Frontend API client (Tevin will set this up):**
+```yaml
+# docker-compose.yml
+
+services:
+  db:
+    image: postgres:16-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=hackathon
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
+```
+
+### CORS (Aidan)
+
+```go
+e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
+    AllowOrigins:     []string{"http://localhost:5173", "https://[FRONTEND].pages.dev"},
+    AllowMethods:     []string{http.MethodGet, http.MethodPost, http.MethodOptions},
+    AllowHeaders:     []string{echo.HeaderContentType},
+    AllowCredentials: true,
+}))
+```
+
+### API Client (Tevin)
 
 ```typescript
 // frontend/src/lib/api.ts
@@ -211,83 +264,6 @@ export const api = {
     }).then(r => r.json()),
 };
 ```
-
-**Backend CORS config (Aidan):**
-
-```go
-// Allows frontend to call backend from different origin
-e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
-    AllowOrigins:     []string{"http://localhost:5173", "https://[YOUR-APP].pages.dev"},
-    AllowMethods:     []string{http.MethodGet, http.MethodPost, http.MethodOptions},
-    AllowHeaders:     []string{echo.HeaderContentType},
-    AllowCredentials: true,
-}))
-```
-
-### Docker Setup (Local Development)
-
-```yaml
-# docker-compose.yml
-
-services:
-  backend:
-    build: ./backend
-    ports:
-      - "8080:8080"
-    environment:
-      - DATABASE_URL=postgresql://postgres:postgres@db:5432/hackathon?sslmode=disable
-      - PORT=8080
-      - ALLOWED_ORIGINS=http://localhost:5173
-    depends_on:
-      - db
-
-  db:
-    image: postgres:16-alpine
-    ports:
-      - "5432:5432"
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=hackathon
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-
-volumes:
-  pgdata:
-```
-
-```dockerfile
-# backend/Dockerfile
-
-FROM golang:1.22-alpine AS builder
-WORKDIR /app
-COPY go.mod go.sum ./
-RUN go mod download
-COPY . .
-RUN CGO_ENABLED=0 go build -o server ./cmd/server
-
-FROM alpine:3.19
-RUN apk --no-cache add ca-certificates
-WORKDIR /app
-COPY --from=builder /app/server .
-COPY --from=builder /app/migrations ./migrations
-EXPOSE 8080
-CMD ["./server"]
-```
-
-**Local dev workflow:**
-
-```bash
-# Terminal 1: Start backend + database
-docker-compose up
-
-# Terminal 2: Start frontend (Tevin runs this from frontend/)
-cd frontend && pnpm dev
-```
-
-### Why Go?
-
-Clean, testable backend that compiles to a single binary. Echo gives us a fast router with built-in middleware for CORS, logging, and recovery.
 
 ### Database Schema
 
@@ -575,7 +551,7 @@ Use for Q&A or expanding on technical/business aspects from pitch deck.
 **Backend (backend/.env):**
 ```env
 PORT=8080
-DATABASE_URL=postgresql://postgres:postgres@localhost:5432/hackathon?sslmode=disable
+DATABASE_URL=postgres://postgres:postgres@localhost:5432/hackathon?sslmode=disable
 RESEND_API_KEY=re_...
 ALLOWED_ORIGINS=http://localhost:5173
 ```
@@ -588,26 +564,24 @@ PUBLIC_API_URL=http://localhost:8080
 ### Makefile
 
 ```makefile
-# Makefile
-
-.PHONY: dev dev-api dev-frontend db-up db-down migrate migrate-down build deploy
-
-# Development
-dev: db-up dev-api dev-frontend
-
-dev-api:
-	cd backend && go run ./cmd/server
-
-dev-frontend:
-	cd frontend && pnpm dev
+.PHONY: dev db-up db-down migrate migrate-down build deploy
 
 # Database
 db-up:
-	docker-compose up -d db
+	docker-compose up -d
 
 db-down:
 	docker-compose down
 
+# Backend
+dev-api:
+	cd backend && go run ./cmd/server
+
+# Frontend
+dev-frontend:
+	cd frontend && pnpm dev
+
+# Migrations
 migrate:
 	goose -dir backend/migrations postgres "$(DATABASE_URL)" up
 
@@ -621,38 +595,28 @@ migrate-status:
 build-api:
 	cd backend && go build -o bin/server ./cmd/server
 
-build-frontend:
-	cd frontend && pnpm build
-
 # Deploy
 deploy-api:
 	cd backend && flyctl deploy
-
-deploy-frontend:
-	cd frontend && pnpm build && wrangler pages deploy .svelte-kit/cloudflare
 ```
 
 ### Commands
 
 ```bash
-# Start database
+# Start postgres
 make db-up
 
-# Run backend (separate terminal)
+# Run backend (terminal 1)
 make dev-api
 
-# Run frontend (separate terminal)
+# Run frontend (terminal 2)
 make dev-frontend
 
-# Run migrations
-DATABASE_URL="postgresql://postgres:postgres@localhost:5432/hackathon?sslmode=disable" make migrate
+# Migrations
+DATABASE_URL="postgres://postgres:postgres@localhost:5432/hackathon?sslmode=disable" make migrate
 
-# Check migration status
-DATABASE_URL="postgresql://postgres:postgres@localhost:5432/hackathon?sslmode=disable" make migrate-status
-
-# Deploy
+# Deploy backend
 make deploy-api
-make deploy-frontend
 ```
 
 ---
