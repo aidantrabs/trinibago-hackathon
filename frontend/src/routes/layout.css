@@ -5,6 +5,21 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  /* Trinidad & Tobago Theme Colors - easily configurable */
+  --tt-red: oklch(0.528 0.191 27.33);        /* #CE1126 - T&T flag red */
+  --tt-red-light: oklch(0.628 0.191 27.33);  /* Lighter variant */
+  --tt-red-dark: oklch(0.428 0.191 27.33);   /* Darker variant */
+  --tt-black: oklch(0.145 0 0);              /* T&T flag black */
+  --tt-white: oklch(0.985 0 0);              /* T&T flag white */
+  --tt-gold: oklch(0.795 0.16 85);           /* Accent gold */
+  
+  /* Heritage type colors for calendar highlights */
+  --heritage-african: oklch(0.55 0.15 145);     /* Green tones */
+  --heritage-indian: oklch(0.75 0.18 85);       /* Gold/saffron */
+  --heritage-indigenous: oklch(0.55 0.12 55);   /* Earth brown */
+  --heritage-mixed: oklch(0.6 0.2 280);         /* Purple */
+  --heritage-christian: oklch(0.55 0.18 250);   /* Blue */
+
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.129 0.042 264.695);
@@ -78,6 +93,22 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  
+  /* T&T Theme Colors */
+  --color-tt-red: var(--tt-red);
+  --color-tt-red-light: var(--tt-red-light);
+  --color-tt-red-dark: var(--tt-red-dark);
+  --color-tt-black: var(--tt-black);
+  --color-tt-white: var(--tt-white);
+  --color-tt-gold: var(--tt-gold);
+  
+  /* Heritage colors */
+  --color-heritage-african: var(--heritage-african);
+  --color-heritage-indian: var(--heritage-indian);
+  --color-heritage-indigenous: var(--heritage-indigenous);
+  --color-heritage-mixed: var(--heritage-mixed);
+  --color-heritage-christian: var(--heritage-christian);
+  
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
