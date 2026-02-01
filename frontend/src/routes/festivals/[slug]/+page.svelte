@@ -5,12 +5,14 @@
 	import * as Card from '$lib/components/ui/card';
 	import { Separator } from '$lib/components/ui/separator';
 	import { FestivalCard } from '$lib/components/calendar';
+	import { MemoryCard, MemoryForm } from '$lib/components/memories';
 	import { heritageLabels, regionLabels } from '$lib/types/festival';
 	import type { HeritageType } from '$lib/types/festival';
 	import { formatDateRange, getRelativeTime } from '$lib/utils/calendar';
 
 	let { data } = $props();
 	const festival = $derived(data.festival);
+	const memories = $derived(data.memories);
 	const relatedFestivals = $derived(data.relatedFestivals);
 
 	// Configure marked for safety
@@ -44,7 +46,7 @@
 <div class="min-h-screen bg-background">
 	<!-- Header -->
 	<header class="border-b bg-card/80 backdrop-blur-sm sticky top-0 z-50">
-		<div class="container mx-auto px-4 py-4">
+		<div class="container max-w-6xl mx-auto px-4 py-4">
 			<div class="flex items-center justify-between">
 				<a href="/" class="text-xl font-bold text-tt-red hover:text-tt-red-dark transition-colors">
 					T&T Festivals
@@ -58,7 +60,7 @@
 	</header>
 
 	<!-- Breadcrumb -->
-	<div class="container mx-auto px-4 py-4">
+	<div class="container max-w-6xl mx-auto px-4 py-4">
 		<nav class="flex items-center gap-2 text-sm text-muted-foreground">
 			<a href="/" class="hover:text-foreground transition-colors">Home</a>
 			<span>/</span>
@@ -80,7 +82,7 @@
 				<div class="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent"></div>
 			</div>
 			<div class="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-				<div class="container mx-auto">
+				<div class="container max-w-6xl mx-auto">
 					<div class="flex flex-wrap gap-2 mb-3">
 						<Badge class={getHeritageBadgeClass(festival.heritageType)}>
 							{heritageLabels[festival.heritageType]}
@@ -102,7 +104,7 @@
 			</div>
 		{:else}
 			<div class="bg-muted py-12 md:py-16">
-				<div class="container mx-auto px-4">
+				<div class="container max-w-6xl mx-auto px-4">
 					<div class="flex flex-wrap gap-2 mb-3">
 						<Badge class={getHeritageBadgeClass(festival.heritageType)}>
 							{heritageLabels[festival.heritageType]}
@@ -120,7 +122,7 @@
 		{/if}
 	</section>
 
-	<main class="container mx-auto px-4 py-8">
+	<main class="container max-w-6xl mx-auto px-4 py-8">
 		<div class="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-8">
 			<!-- Main Content -->
 			<div class="space-y-8">
@@ -274,6 +276,41 @@
 						</Card.Root>
 					</section>
 				{/if}
+
+				<!-- Community Memories Section -->
+				<section id="memories">
+					<h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-tt-red">
+							<path d="M17 6.1H3"/>
+							<path d="M21 12.1H3"/>
+							<path d="M15.1 18H3"/>
+						</svg>
+						Community Memories
+					</h2>
+					
+					{#if memories.length > 0}
+						<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+							{#each memories as memory (memory.id)}
+								<MemoryCard {memory} />
+							{/each}
+						</div>
+					{:else}
+						<Card.Root class="mb-6">
+							<Card.Content class="py-8 text-center">
+								<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mx-auto text-muted-foreground/50 mb-4">
+									<path d="M17 6.1H3"/>
+									<path d="M21 12.1H3"/>
+									<path d="M15.1 18H3"/>
+								</svg>
+								<p class="text-muted-foreground">No memories shared yet.</p>
+								<p class="text-sm text-muted-foreground mt-1">Be the first to share your experience!</p>
+							</Card.Content>
+						</Card.Root>
+					{/if}
+
+					<!-- Memory Submission Form -->
+					<MemoryForm festivalId={festival.id} festivalName={festival.name} />
+				</section>
 			</div>
 
 			<!-- Sidebar -->
@@ -362,7 +399,7 @@
 
 	<!-- Footer -->
 	<footer class="border-t bg-card mt-12">
-		<div class="container mx-auto px-4 py-6 text-center text-sm text-muted-foreground">
+		<div class="container max-w-6xl mx-auto px-4 py-6 text-center text-sm text-muted-foreground">
 			<p>Built with ❤️ for Trinidad & Tobago · TrinbagoTech Hackathon 2026</p>
 		</div>
 	</footer>

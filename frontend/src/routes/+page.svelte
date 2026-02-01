@@ -26,7 +26,7 @@
 <div class="min-h-screen bg-background">
 	<!-- Header -->
 	<header class="border-b bg-card/80 backdrop-blur-sm sticky top-0 z-50">
-		<div class="container mx-auto px-4 py-4">
+		<div class="container max-w-6xl mx-auto px-4 py-4">
 			<div class="flex items-center justify-between">
 				<a href="/" class="text-xl font-bold text-tt-red hover:text-tt-red-dark transition-colors">
 					T&T Festivals
@@ -42,7 +42,7 @@
 	<!-- Hero Section -->
 	<section class="relative bg-linear-to-br from-tt-black via-tt-black to-tt-red/20 text-white">
 		<div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1551972251-12070d63502a?w=1920')] bg-cover bg-center opacity-20"></div>
-		<div class="relative container mx-auto px-4 py-20 lg:py-32">
+		<div class="relative container max-w-6xl mx-auto px-4 py-20 lg:py-32">
 			<div class="max-w-3xl">
 				<h1 class="text-4xl lg:text-6xl font-bold mb-6">
 					Discover Trinidad & Tobago's 
@@ -59,7 +59,7 @@
 							<path d="m9 18 6-6-6-6"/>
 						</svg>
 					</Button>
-					<Button href="#this-week" variant="outline" size="lg" class="border-white text-white hover:bg-white/10">
+					<Button href="#this-week" variant="outline" size="lg" class="border-white text-black hover:bg-gray-100">
 						What's Coming Up
 					</Button>
 				</div>
@@ -69,7 +69,7 @@
 
 	<!-- Stats Section -->
 	<section class="bg-card border-b">
-		<div class="container mx-auto px-4 py-8">
+		<div class="container max-w-6xl mx-auto px-4 py-8">
 			<div class="grid grid-cols-3 gap-4 text-center">
 				<div>
 					<p class="text-3xl font-bold text-tt-red">{stats.festivals}+</p>
@@ -88,7 +88,7 @@
 	</section>
 
 	<!-- This Week Section -->
-	<section id="this-week" class="container mx-auto px-4 py-12">
+	<section id="this-week" class="container max-w-6xl mx-auto px-4 py-12">
 		<div class="flex items-center justify-between mb-6">
 			<div>
 				<h2 class="text-2xl lg:text-3xl font-bold">This Week in T&T Culture</h2>
@@ -120,7 +120,7 @@
 
 	<!-- Why This Matters Section -->
 	<section class="bg-muted/30 py-12">
-		<div class="container mx-auto px-4">
+		<div class="container max-w-6xl mx-auto px-4">
 			<div class="max-w-3xl mx-auto text-center mb-10">
 				<h2 class="text-2xl lg:text-3xl font-bold mb-4">More Than Just Carnival</h2>
 				<p class="text-muted-foreground">
@@ -182,7 +182,7 @@
 	</section>
 
 	<!-- Featured Festivals -->
-	<section class="container mx-auto px-4 py-12">
+	<section class="container max-w-6xl mx-auto px-4 py-12">
 		<h2 class="text-2xl lg:text-3xl font-bold mb-6">Featured Festivals</h2>
 		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 			{#each featuredFestivals as festival (festival.id)}
@@ -198,7 +198,7 @@
 
 	<!-- CTA Section -->
 	<section class="bg-tt-red text-white py-12">
-		<div class="container mx-auto px-4 text-center">
+		<div class="container max-w-6xl mx-auto px-4 text-center">
 			<h2 class="text-2xl lg:text-3xl font-bold mb-4">Ready to Explore?</h2>
 			<p class="text-lg opacity-90 mb-6 max-w-2xl mx-auto">
 				Whether you're a first-timer, returning local, or curious visitor, 
@@ -212,7 +212,7 @@
 
 	<!-- Footer -->
 	<footer class="border-t bg-card">
-		<div class="container mx-auto px-4 py-8">
+		<div class="container max-w-6xl mx-auto px-4 py-8">
 			<div class="flex flex-col md:flex-row items-center justify-between gap-4">
 				<div class="text-center md:text-left">
 					<p class="font-semibold text-tt-red">T&T Festivals</p>

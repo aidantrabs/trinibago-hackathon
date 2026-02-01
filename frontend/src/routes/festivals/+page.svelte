@@ -131,7 +131,7 @@
 <div class="min-h-screen bg-background">
 	<!-- Header -->
 	<header class="border-b bg-card sticky top-0 z-50">
-		<div class="container mx-auto px-4 py-4">
+		<div class="container max-w-6xl mx-auto px-4 py-4">
 			<div class="flex items-center justify-between">
 				<div>
 					<a href="/" class="text-xl font-bold text-tt-red hover:text-tt-red-dark transition-colors">
@@ -147,7 +147,7 @@
 		</div>
 	</header>
 
-	<main class="container mx-auto px-4 py-6">
+	<main class="container max-w-6xl mx-auto px-4 py-6">
 		<!-- Page Title -->
 		<div class="mb-6">
 			<h1 class="text-3xl font-bold mb-2">Festival Calendar</h1>
@@ -283,7 +283,7 @@
 
 	<!-- Footer -->
 	<footer class="border-t bg-card mt-12">
-		<div class="container mx-auto px-4 py-6 text-center text-sm text-muted-foreground">
+		<div class="container max-w-6xl mx-auto px-4 py-6 text-center text-sm text-muted-foreground">
 			<p>Built with ❤️ for Trinidad & Tobago · TrinbagoTech Hackathon 2026</p>
 		</div>
 	</footer>
