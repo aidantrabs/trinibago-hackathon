@@ -139,4 +139,4 @@ All emails include:
 
 - Emails are sent via Resend from `noreply@kultur-tt.app`
 - Custom domain DNS (DKIM, SPF, DMARC) is configured for deliverability
-- Rate limits apply to prevent abuse
+- Rate limits apply to prevent abuse (pls don't spam)
