@@ -119,7 +119,7 @@
     }
 
     // Day click handler
-    function handleDayClick(date: Date, dayFestivals: Festival[]) {
+    function handleDayClick(_date: Date, dayFestivals: Festival[]) {
         // Could open a modal or navigate to first festival
         if (dayFestivals.length === 1) {
             window.location.href = `/festivals/${dayFestivals[0].slug}`;
