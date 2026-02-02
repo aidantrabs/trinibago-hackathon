@@ -1,0 +1,56 @@
+{
+    "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+    "vcs": {
+        "enabled": false,
+        "clientKind": "git",
+        "useIgnoreFile": false
+    },
+    "files": {
+        "ignoreUnknown": false,
+        "include": ["**/*.ts", "**/*.svelte", "**/*.json"],
+        "ignore": [".svelte-kit", "node_modules", "build"]
+    },
+    "formatter": {
+        "formatWithErrors": false,
+        "enabled": true,
+        "indentStyle": "space",
+        "indentWidth": 4,
+        "lineWidth": 100,
+        "lineEnding": "lf",
+        "attributePosition": "auto",
+        "bracketSpacing": true
+    },
+    "organizeImports": {
+        "enabled": true
+    },
+    "linter": {
+        "enabled": true,
+        "rules": {
+            "recommended": true,
+            "complexity": {
+                "noForEach": "off"
+            },
+            "style": {
+                "noNonNullAssertion": "warn",
+                "useConst": "error",
+                "useTemplate": "off"
+            },
+            "suspicious": {
+                "noExplicitAny": "warn",
+                "noConsole": "off"
+            }
+        }
+    },
+    "javascript": {
+        "formatter": {
+            "jsxQuoteStyle": "double",
+            "quoteProperties": "asNeeded",
+            "quoteStyle": "single",
+            "trailingCommas": "es5",
+            "semicolons": "always",
+            "arrowParentheses": "always",
+            "attributePosition": "auto",
+            "bracketSpacing": true
+        }
+    }
+}
