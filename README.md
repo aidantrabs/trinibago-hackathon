@@ -196,10 +196,25 @@ Our demo showcases **10 festivals** across multiple heritage types:
 
 ## Technical Overview
 
+![SvelteKit](docs/assets/tech-icons/sveltekit.svg)
+![TypeScript](docs/assets/tech-icons/typescript.svg)
+![TailwindCSS](docs/assets/tech-icons/tailwindcss.svg)
+![Vite](docs/assets/tech-icons/vite.svg)
+![Vercel](docs/assets/tech-icons/vercel.svg)
+
+![Go](docs/assets/tech-icons/go.svg)
+![PostgreSQL](docs/assets/tech-icons/postgresql.svg)
+![Cloud Run](docs/assets/tech-icons/cloudrun.svg)
+![Neon](docs/assets/tech-icons/neon.svg)
+
+![GitHub Actions](docs/assets/tech-icons/github-actions.svg)
+![Resend](docs/assets/tech-icons/resend.svg)
+![Biome](docs/assets/tech-icons/biome.svg)
+
 | Layer | Technology | Hosting |
 |:------|:-----------|:--------|
 | Frontend | SvelteKit 2, Svelte 5, TailwindCSS 4 | Vercel |
-| Backend | Go 1.24, Echo | Fly.io |
+| Backend | Go 1.24, Echo | Cloud Run |
 | Database | PostgreSQL | Neon |
 | Email | Resend | Custom domain |
 | CI/CD | GitHub Actions | Automated testing & deployment |
@@ -219,6 +234,7 @@ For technical deep-dive, see [docs/IMPLEMENTATION.md](docs/IMPLEMENTATION.md).
 | [docs/IMPLEMENTATION.md](docs/IMPLEMENTATION.md) | Technical architecture and decisions |
 | [docs/DEMO.md](docs/DEMO.md) | Email template testing guide |
 | [docs/PLANNING.md](docs/PLANNING.md) | Original hackathon planning document |
+| [docs/CLOUD_RUN_MIGRATION.md](docs/CLOUD_RUN_MIGRATION.md) | Fly.io to Cloud Run migration guide |
 
 ---
 
@@ -226,8 +242,8 @@ For technical deep-dive, see [docs/IMPLEMENTATION.md](docs/IMPLEMENTATION.md).
 
 ```bash
 # Clone
-git clone https://github.com/aidantrabs/trinbago-hackathon.git
-cd trinbago-hackathon
+git clone https://github.com/aidantrabs/kultur.git
+cd kultur
 
 # Backend
 cd backend
