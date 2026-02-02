@@ -3,39 +3,40 @@ import { getMemoriesByFestivalSlug } from '$lib/data/memories';
 import { config } from '$lib/config';
 import { error } from '@sveltejs/kit';
 import type { PageLoad } from './$types';
+import type { Festival } from '$lib/types/festival';
 
 export const load: PageLoad = async ({ params }) => {
-	// Try API first if enabled, otherwise use mock data
-	let festival;
-	
-	if (config.useApi) {
-		try {
-			festival = await getFestivalBySlug(params.slug);
-		} catch (err) {
-			// Fallback to mock data
-			festival = festivals.find((f) => f.slug === params.slug);
-		}
-	} else {
-		festival = festivals.find((f) => f.slug === params.slug);
-	}
+    // Try API first if enabled, otherwise use mock data
+    let festival: Festival | undefined;
 
-	if (!festival) {
-		error(404, {
-			message: 'Festival not found'
-		});
-	}
+    if (config.useApi) {
+        try {
+            festival = await getFestivalBySlug(params.slug);
+        } catch (err) {
+            // Fallback to mock data
+            festival = festivals.find((f) => f.slug === params.slug);
+        }
+    } else {
+        festival = festivals.find((f) => f.slug === params.slug);
+    }
 
-	// Get memories for this festival (API-aware)
-	const memories = await getMemoriesByFestivalSlug(params.slug);
+    if (!festival) {
+        error(404, {
+            message: 'Festival not found',
+        });
+    }
 
-	// Get related festivals (same heritage type, excluding current)
-	const relatedFestivals = festivals
-		.filter((f) => f.heritageType === festival.heritageType && f.id !== festival.id)
-		.slice(0, 3);
+    // Get memories for this festival (API-aware)
+    const memories = await getMemoriesByFestivalSlug(params.slug);
 
-	return {
-		festival,
-		memories,
-		relatedFestivals
-	};
+    // Get related festivals (same heritage type, excluding current)
+    const relatedFestivals = festivals
+        .filter((f) => f.heritageType === festival.heritageType && f.id !== festival.id)
+        .slice(0, 3);
+
+    return {
+        festival,
+        memories,
+        relatedFestivals,
+    };
 };
