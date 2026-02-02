@@ -15,6 +15,7 @@ import (
 var (
     ErrSubscriptionNotFound = errors.New("subscription not found")
     ErrInvalidToken         = errors.New("invalid token")
+    ErrEmailAlreadyExists   = errors.New("email already subscribed")
 )
 
 type SubscriptionService struct {
@@ -35,6 +36,16 @@ type CreateSubscriptionParams struct {
 }
 
 func (s *SubscriptionService) Create(ctx context.Context, params CreateSubscriptionParams) (db.Subscription, error) {
+    // Check if email already exists
+    existing, err := s.queries.GetSubscriptionByEmail(ctx, params.Email)
+    if err == nil {
+        // Email already exists, return the existing subscription
+        return existing, ErrEmailAlreadyExists
+    }
+    if !errors.Is(err, pgx.ErrNoRows) {
+        return db.Subscription{}, err
+    }
+
     confirmToken, err := generateToken()
     if err != nil {
         return db.Subscription{}, err
