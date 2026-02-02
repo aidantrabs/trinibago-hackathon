@@ -76,8 +76,8 @@ const baseTemplate = `<!DOCTYPE html>
                     <!-- Header with Logo -->
                     <tr>
                         <td style="padding: 0 0 24px 0; text-align: center;">
-                            <a href="https://kultur-tt.vercel.app" style="text-decoration: none;">
-                                <img src="https://kultur-tt.vercel.app/logo.png" alt="KULTUR" width="80" height="80" style="display: block; margin: 0 auto; border: 0;" />
+                            <a href="https://kultur-tt.app" style="text-decoration: none;">
+                                <img src="https://kultur-tt.app/logo.png" alt="KULTUR" width="80" height="80" style="display: block; margin: 0 auto; border: 0;" />
                             </a>
                         </td>
                     </tr>
