@@ -3,7 +3,7 @@
 ## Production URLs
 
 - **Frontend**: https://kultur-tt.app
-- **Backend API**: https://kultur-api.fly.dev
+- **Backend API**: https://kultur-api-971304624476.us-central1.run.app
 
 ## Route Reference
 
@@ -64,6 +64,6 @@ All admin routes require `X-API-Key` header.
 Admin routes use API key authentication via the `X-API-Key` header:
 
 ```bash
-curl -X GET "https://kultur-api.fly.dev/api/admin/memories" \
+curl -X GET "https://kultur-api-971304624476.us-central1.run.app/api/admin/memories" \
   -H "X-API-Key: YOUR_ADMIN_API_KEY"
 ```

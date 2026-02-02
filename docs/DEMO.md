@@ -15,7 +15,7 @@ All test email endpoints are protected and require the admin API key header:
 X-API-Key: <ADMIN_API_KEY>
 ```
 
-Base URL: `https://kultur-api.fly.dev`
+Base URL: `https://kultur-api-971304624476.us-central1.run.app`
 
 ## Email Templates
 
@@ -24,7 +24,7 @@ Base URL: `https://kultur-api.fly.dev`
 Sent when a user subscribes to the newsletter. Includes a welcome message and links to explore festivals.
 
 ```bash
-curl -X POST "https://kultur-api.fly.dev/api/admin/test-email/welcome" \
+curl -X POST "https://kultur-api-971304624476.us-central1.run.app/api/admin/test-email/welcome" \
   -H "Content-Type: application/json" \
   -H "X-API-Key: <ADMIN_API_KEY>" \
   -d '{"email": "your-email@example.com"}'
@@ -43,7 +43,7 @@ curl -X POST "https://kultur-api.fly.dev/api/admin/test-email/welcome" \
 Sent to remind users about an upcoming festival. Includes festival name, days until the event, and a link to learn more.
 
 ```bash
-curl -X POST "https://kultur-api.fly.dev/api/admin/test-email/reminder" \
+curl -X POST "https://kultur-api-971304624476.us-central1.run.app/api/admin/test-email/reminder" \
   -H "Content-Type: application/json" \
   -H "X-API-Key: <ADMIN_API_KEY>" \
   -d '{"email": "your-email@example.com"}'
@@ -66,7 +66,7 @@ curl -X POST "https://kultur-api.fly.dev/api/admin/test-email/reminder" \
 Sent weekly with a list of upcoming festivals. Includes festival names, dates, heritage type, and regions.
 
 ```bash
-curl -X POST "https://kultur-api.fly.dev/api/admin/test-email/digest" \
+curl -X POST "https://kultur-api-971304624476.us-central1.run.app/api/admin/test-email/digest" \
   -H "Content-Type: application/json" \
   -H "X-API-Key: <ADMIN_API_KEY>" \
   -d '{"email": "your-email@example.com"}'
@@ -96,19 +96,19 @@ API_KEY="<ADMIN_API_KEY>"
 EMAIL="your-email@example.com"
 
 echo "Sending Welcome Email..."
-curl -s -X POST "https://kultur-api.fly.dev/api/admin/test-email/welcome" \
+curl -s -X POST "https://kultur-api-971304624476.us-central1.run.app/api/admin/test-email/welcome" \
   -H "Content-Type: application/json" \
   -H "X-API-Key: $API_KEY" \
   -d "{\"email\": \"$EMAIL\"}"
 
 echo -e "\n\nSending Festival Reminder..."
-curl -s -X POST "https://kultur-api.fly.dev/api/admin/test-email/reminder" \
+curl -s -X POST "https://kultur-api-971304624476.us-central1.run.app/api/admin/test-email/reminder" \
   -H "Content-Type: application/json" \
   -H "X-API-Key: $API_KEY" \
   -d "{\"email\": \"$EMAIL\"}"
 
 echo -e "\n\nSending Weekly Digest..."
-curl -s -X POST "https://kultur-api.fly.dev/api/admin/test-email/digest" \
+curl -s -X POST "https://kultur-api-971304624476.us-central1.run.app/api/admin/test-email/digest" \
   -H "Content-Type: application/json" \
   -H "X-API-Key: $API_KEY" \
   -d "{\"email\": \"$EMAIL\"}"

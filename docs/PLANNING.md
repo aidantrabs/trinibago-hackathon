@@ -197,14 +197,14 @@ hackathon-project/
 ┌─────────────────────────────────────────────────────────────┐
 │                       PRODUCTION                            │
 │                                                             │
-│   Frontend  ◄── Cloudflare Workers/Pages                    │
+│   Frontend  ◄── Vercel                                      │
 │        │                                                    │
-│        │  fetch('https://[API].fly.dev/api/...')            │
+│        │  fetch('https://[API].run.app/api/...')            │
 │        ▼                                                    │
-│   Backend  ◄── Fly.io                                       │
+│   Backend  ◄── Cloud Run                                    │
 │        │                                                    │
 │        ▼                                                    │
-│   PostgreSQL  ◄── Fly Postgres                              │
+│   PostgreSQL  ◄── Neon                                      │
 │                                                             │
 └─────────────────────────────────────────────────────────────┘
 ```
@@ -633,7 +633,7 @@ This section documents what was actually implemented during the hackathon.
 | Service | URL |
 |:--------|:----|
 | Frontend | https://kultur-tt.app |
-| Backend API | https://kultur-api.fly.dev |
+| Backend API | https://kultur-api-971304624476.us-central1.run.app |
 | Email Domain | noreply@kultur-tt.app |
 
 ### Tech Stack (Final)
@@ -641,7 +641,7 @@ This section documents what was actually implemented during the hackathon.
 | Layer | Technology | Hosting |
 |:------|:-----------|:--------|
 | Frontend | SvelteKit 2, Svelte 5, TailwindCSS 4, shadcn-svelte | Vercel |
-| Backend | Go 1.24, Echo framework | Fly.io |
+| Backend | Go 1.24, Echo framework | Cloud Run |
 | Database | PostgreSQL | Neon |
 | Email | Resend | Custom domain |
 | Linting | Biome | - |
