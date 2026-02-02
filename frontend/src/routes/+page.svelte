@@ -19,7 +19,7 @@
 </script>
 
 <svelte:head>
-	<title>T&T Festivals | Your Guide to Trinidad & Tobago's Cultural Celebrations</title>
+	<title>KULTUR | Your Guide to Trinidad & Tobago's Cultural Celebrations</title>
 	<meta name="description" content="Discover 20+ cultural festivals across Trinidad & Tobago. From Carnival to Hosay, find your next authentic cultural experience." />
 </svelte:head>
 
@@ -29,7 +29,7 @@
 		<div class="container max-w-6xl mx-auto px-4 py-4">
 			<div class="flex items-center justify-between">
 				<a href="/" class="text-xl font-bold text-tt-red hover:text-tt-red-dark transition-colors">
-					T&T Festivals
+					KULTUR
 				</a>
 				<nav class="flex items-center gap-4">
 					<a href="/" class="text-sm font-medium text-tt-red">Home</a>
@@ -91,7 +91,7 @@
 	<section id="this-week" class="container max-w-6xl mx-auto px-4 py-12">
 		<div class="flex items-center justify-between mb-6">
 			<div>
-				<h2 class="text-2xl lg:text-3xl font-bold">This Week in T&T Culture</h2>
+				<h2 class="text-2xl lg:text-3xl font-bold">This Week in T&T</h2>
 				<p class="text-muted-foreground">Festivals happening in the next 2 weeks</p>
 			</div>
 			<Button href="/festivals" variant="outline">
@@ -215,7 +215,7 @@
 		<div class="container max-w-6xl mx-auto px-4 py-8">
 			<div class="flex flex-col md:flex-row items-center justify-between gap-4">
 				<div class="text-center md:text-left">
-					<p class="font-semibold text-tt-red">T&T Festivals</p>
+					<p class="font-semibold text-tt-red">KULTUR</p>
 					<p class="text-sm text-muted-foreground">Your guide to Trinidad & Tobago's cultural celebrations</p>
 				</div>
 				<p class="text-sm text-muted-foreground">

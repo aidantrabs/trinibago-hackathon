@@ -39,7 +39,7 @@
 </script>
 
 <svelte:head>
-	<title>{festival.name} | T&T Festivals</title>
+	<title>{festival.name} | KULTUR</title>
 	<meta name="description" content={festival.summary} />
 </svelte:head>
 
@@ -49,7 +49,7 @@
 		<div class="container max-w-6xl mx-auto px-4 py-4">
 			<div class="flex items-center justify-between">
 				<a href="/" class="text-xl font-bold text-tt-red hover:text-tt-red-dark transition-colors">
-					T&T Festivals
+					KULTUR
 				</a>
 				<nav class="flex items-center gap-4">
 					<a href="/" class="text-sm hover:text-tt-red transition-colors">Home</a>

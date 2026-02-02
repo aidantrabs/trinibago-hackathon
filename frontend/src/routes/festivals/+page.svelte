@@ -124,7 +124,7 @@
 </script>
 
 <svelte:head>
-	<title>Festival Calendar | Trinidad & Tobago Cultural Festivals</title>
+	<title>Festival Calendar | KULTUR</title>
 	<meta name="description" content="Discover Trinidad & Tobago's cultural festivals. Browse by month, region, or heritage type." />
 </svelte:head>
 
@@ -135,7 +135,7 @@
 			<div class="flex items-center justify-between">
 				<div>
 					<a href="/" class="text-xl font-bold text-tt-red hover:text-tt-red-dark transition-colors">
-						T&T Festivals
+						KULTUR
 					</a>
 					<p class="text-sm text-muted-foreground">Your guide to Trinidad & Tobago's cultural celebrations</p>
 				</div>
@@ -249,7 +249,7 @@
 		<section class="mb-8">
 			<div class="flex items-center justify-between mb-4">
 				<div>
-					<h2 class="text-2xl font-bold">This Week in T&T Culture</h2>
+					<h2 class="text-2xl font-bold">This Week in T&T</h2>
 					<p class="text-muted-foreground text-sm">Festivals happening in the next 2 weeks</p>
 				</div>
 			</div>
