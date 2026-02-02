@@ -4,6 +4,8 @@
 
 *TrinbagoTech Hackathon 2026 · January 30 – February 2*
 
+**Live Site**: [kultur-tt.app](https://kultur-tt.app)
+
 ---
 
 ## The Team
@@ -34,82 +36,30 @@ The information about these festivals is:
 
 ---
 
-## The Gap in the Market
+## Features
 
-| What Exists | The Problem |
-|:------------|:------------|
-| WahWeDoing.com | 300+ Carnival parties, zero indigenous festivals |
-| VisitTrinidad.tt | Last updated 2020 |
-| DiscoverTnT.com | Calendar frozen on 2020 |
-| NALIS archives | Excellent content, buried in academic format |
-| Facebook groups | Fragmented, unsearchable, no context for newcomers |
+### Festival Calendar
+- Browse all festivals by month, region, or heritage type
+- Interactive calendar with color-coded heritage types
+- "This Week in T&T" section for upcoming festivals
 
-**No platform exists that helps someone attend a festival they've never been to.**
+### First-Timer's Guides
+Each festival includes:
+- History and cultural significance
+- What you'll actually see, hear, and experience
+- How to participate respectfully (dress code, etiquette)
+- Practical info (parking, food, best viewing spots)
 
-People don't just need to know *when* a festival happens. They need to know *what it is*, *what to expect*, and *how to participate respectfully*.
+### Newsletter & Reminders
+- Email subscription for festival updates
+- Welcome emails for new subscribers
+- Festival reminder notifications
+- Weekly digest of upcoming festivals
 
----
-
-## Our Solution
-
-A platform that serves as a **first-timer's guide** to every major cultural festival in Trinidad & Tobago.
-
-### What We're Building
-
-- **Festival Calendar** — Browse all festivals by month, region, or heritage type
-- **First-Timer's Guides** — Deep, accessible content for each festival:
-  - History and cultural significance
-  - What you'll actually see, hear, and experience
-  - How to participate respectfully (dress code, etiquette, what's appropriate)
-  - Practical info (parking, food, best viewing spots)
-- **"This Week in T&T Culture"** — What's happening soon, with email digests
-- **Community Memories** — Real stories from people who've attended
-- **Email Reminders** — Get notified before festivals you care about
-- **PWA** — Works offline (for when you're at a festival with bad signal)
-
----
-
-## Why This Matters
-
-### Cultural Preservation
-
-Trinidad & Tobago's cultural landscape is extraordinary:
-
-- **First Peoples Heritage** — The Santa Rosa First Peoples Community in Arima is the last organized Indigenous group in T&T, preserving traditions from 8,000+ years of continuous Amerindian presence
-- **Hosay** — A solemn Islamic observance brought by Indian indentured laborers in 1845, with tadjahs reaching 30 feet tall
-- **Divali Nagar** — The largest Divali celebration in the English-speaking Caribbean
-- **Spiritual Baptist Liberation Day** — Commemorating the 1951 repeal of the Shouter Prohibition Ordinance that had banned the faith for 34 years
-
-These traditions risk fading from public consciousness when they're not documented and shared accessibly.
-
-### Diaspora Connection
-
-**374,500 Trinbagonians** live abroad in the USA, Canada, and UK. Many are disconnected from the cultural traditions of their homeland. This platform gives them a way to:
-- Learn about festivals their parents and grandparents attended
-- Plan meaningful visits home around cultural events
-- Share these traditions with the next generation
-
-### Tourism with Authenticity
-
-**158,890 tourists** arrived in T&T between January and May 2025 (up 13.7% year-over-year). The Ministry of Tourism is actively pushing "community-centered experiences" — exactly what our platform enables.
-
-Instead of just beaches and Carnival, tourists can experience:
-- Hosay processions in St. James
-- Santa Rosa Festival in Arima
-- Ramleela performances across 35+ sites
-- Phagwa celebrations island-wide
-
----
-
-## The Opportunity
-
-| Metric | Value |
-|:-------|:------|
-| Cultural festivals in T&T | 20+ |
-| Trinbagonians in diaspora | 374,500 |
-| Tourist arrivals (Jan-May 2025) | 158,890 |
-| Tourism growth YoY | +13.7% |
-| Existing platforms serving this need | 0 |
+### Community Memories
+- Real stories from people who've attended
+- Submit your own festival memories
+- No account required
 
 ---
 
@@ -132,14 +82,140 @@ Our demo showcases **10 festivals** across multiple heritage types:
 
 ---
 
+## Technical Stack
+
+### Architecture
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                       PRODUCTION                            │
+│                                                             │
+│   Frontend (kultur-tt.app)  ◄── Vercel                      │
+│        │                                                    │
+│        │  fetch('https://kultur-api.fly.dev/api/...')       │
+│        ▼                                                    │
+│   Backend (kultur-api.fly.dev)  ◄── Fly.io                  │
+│        │                                                    │
+│        ▼                                                    │
+│   PostgreSQL  ◄── Neon                                      │
+│                                                             │
+│   Email  ◄── Resend (noreply@kultur-tt.app)                 │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### Stack
+
+| Layer | Technology |
+|:------|:-----------|
+| Frontend | SvelteKit 2, Svelte 5, TailwindCSS 4, shadcn-svelte |
+| Frontend Hosting | Vercel |
+| Backend | Go 1.24, Echo framework |
+| Backend Hosting | Fly.io |
+| Database | PostgreSQL (Neon) |
+| Email | Resend |
+| Linting/Formatting | Biome |
+
+### Key Endpoints
+
+**Public API** (`https://kultur-api.fly.dev`):
+- `GET /api/festivals` - List all festivals
+- `GET /api/festivals/upcoming` - Upcoming festivals
+- `GET /api/festivals/:slug` - Festival details
+- `POST /api/subscribe` - Newsletter signup
+- `POST /api/memories` - Submit a memory
+
+See [docs/ROUTES.md](docs/ROUTES.md) for full API documentation.
+
+---
+
+## Documentation
+
+| Document | Description |
+|:---------|:------------|
+| [docs/SETUP.md](docs/SETUP.md) | Local development setup guide |
+| [docs/ROUTES.md](docs/ROUTES.md) | API routes reference |
+| [docs/DEMO.md](docs/DEMO.md) | Email template testing guide |
+| [docs/PLANNING.md](docs/PLANNING.md) | Original hackathon planning document |
+
+---
+
+## Quick Start
+
+### Prerequisites
+- Go 1.24+
+- Node.js 20+
+- PostgreSQL (or Docker)
+
+### Local Development
+
+```bash
+# Clone the repo
+git clone https://github.com/aidantrabs/trinbago-hackathon.git
+cd trinbago-hackathon
+
+# Backend (Terminal 1)
+cd backend
+cp .env.example .env  # Get real values from codeowner
+go run ./cmd/server
+
+# Frontend (Terminal 2)
+cd frontend
+npm install
+npm run dev
+```
+
+See [docs/SETUP.md](docs/SETUP.md) for comprehensive setup instructions.
+
+---
+
+## Scripts
+
+### Frontend
+
+```bash
+npm run dev       # Start dev server
+npm run build     # Production build
+npm run deploy    # Deploy to Vercel
+npm run format    # Format with Biome
+npm run lint      # Lint with Biome
+```
+
+### Backend
+
+```bash
+go run ./cmd/server  # Start server
+fly deploy           # Deploy to Fly.io
+```
+
+---
+
+## Why This Matters
+
+### Cultural Preservation
+
+Trinidad & Tobago's cultural landscape is extraordinary:
+
+- **First Peoples Heritage** — The Santa Rosa First Peoples Community in Arima is the last organized Indigenous group in T&T
+- **Hosay** — A solemn Islamic observance with tadjahs reaching 30 feet tall
+- **Divali Nagar** — The largest Divali celebration in the English-speaking Caribbean
+- **Spiritual Baptist Liberation Day** — Commemorating the 1951 repeal of religious persecution
+
+### Diaspora Connection
+
+**374,500 Trinbagonians** live abroad. This platform gives them a way to:
+- Learn about festivals their parents attended
+- Plan meaningful visits home around cultural events
+- Share traditions with the next generation
+
+### Tourism with Authenticity
+
+**158,890 tourists** arrived in T&T between January and May 2025. Instead of just beaches and Carnival, they can experience authentic cultural celebrations.
+
+---
+
 ## Vision
 
 > *"Imagine every festival documented like this. Imagine diaspora kids learning about Hosay before visiting home. Imagine tourists experiencing something real.*
 >
 > *KULTUR. Your guide to Trinidad's cultural festivals."*
-
----
-
-## Technical Implementation
-
-See [docs/PLANNING.md](docs/PLANNING.md) for technical architecture and development details.
