@@ -186,6 +186,87 @@ func (s *Service) SendWelcome(toEmail, unsubscribeToken string) error {
     return err
 }
 
+type FestivalDigestItem struct {
+    Name      string
+    Slug      string
+    Date      string
+    Heritage  string
+    Region    string
+}
+
+func (s *Service) SendWeeklyDigest(toEmail string, festivals []FestivalDigestItem, unsubscribeToken string) error {
+    if !s.IsEnabled() {
+        return nil
+    }
+
+    if len(festivals) == 0 {
+        return nil // Don't send empty digest
+    }
+
+    unsubURL := fmt.Sprintf("%s/api/unsubscribe/%s", s.baseURL, unsubscribeToken)
+    calendarURL := fmt.Sprintf("%s/festivals", s.baseURL)
+
+    var festivalListHTML string
+    for _, f := range festivals {
+        festivalURL := fmt.Sprintf("%s/festivals/%s", s.baseURL, f.Slug)
+        festivalListHTML += fmt.Sprintf(`
+        <tr>
+            <td style="padding: 16px; background-color: #f9fafb; border-radius: 8px; margin-bottom: 8px;">
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%%">
+                    <tr>
+                        <td>
+                            <a href="%s" style="font-size: 16px; font-weight: 600; color: %s; text-decoration: none;">%s</a>
+                            <p style="margin: 4px 0 0 0; font-size: 14px; color: #6b7280;">
+                                %s · %s · %s
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr><td style="height: 8px;"></td></tr>`, festivalURL, ColorRed, f.Name, f.Date, f.Heritage, f.Region)
+    }
+
+    body := fmt.Sprintf(`<p style="margin: 0 0 16px 0;">
+        Here's what's happening in Trinidad & Tobago's cultural scene this week.
+    </p>
+
+    <p style="margin: 0 0 24px 0; font-size: 18px; font-weight: 600; color: %s;">
+        Upcoming Festivals
+    </p>
+
+    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%%" style="margin: 0 0 24px 0;">
+        %s
+    </table>
+
+    <p style="margin: 0;">
+        Want to learn more? Check out our <a href="%s" style="color: %s; font-weight: 600;">festival guides</a> for tips on what to expect and how to participate.
+    </p>`, ColorBlack, festivalListHTML, calendarURL, ColorRed)
+
+    html, err := RenderTemplate(TemplateData{
+        PreviewText:    fmt.Sprintf("%d festivals coming up this week in T&T", len(festivals)),
+        Heading:        "This Week in T&T",
+        Body:           template.HTML(body),
+        ButtonText:     "View Full Calendar",
+        ButtonURL:      calendarURL,
+        FooterText:     "You're receiving this because you subscribed to KULTUR festival updates.",
+        UnsubscribeURL: unsubURL,
+        Year:           time.Now().Year(),
+    })
+    if err != nil {
+        return fmt.Errorf("failed to render template: %w", err)
+    }
+
+    _, err = s.client.Emails.Send(&resend.SendEmailRequest{
+        From:    s.from(),
+        To:      []string{toEmail},
+        Subject: fmt.Sprintf("This Week in T&T: %d Festivals Coming Up", len(festivals)),
+        Html:    html,
+    })
+
+    return err
+}
+
 func (s *Service) SendFestivalReminder(toEmail, festivalName, festivalSlug, unsubscribeToken string, daysUntil int) error {
     if !s.IsEnabled() {
         return nil
