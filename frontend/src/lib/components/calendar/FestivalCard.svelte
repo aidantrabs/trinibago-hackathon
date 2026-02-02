@@ -24,7 +24,7 @@
 	}
 </script>
 
-<a href="/festivals/{festival.slug}" class="block group h-full">
+<a href="/festivals/{festival.slug}" class="block group h-full w-full">
 	<Card.Root class="h-full overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-tt-red/50 hover:-translate-y-1">
 		{#if festival.coverImageUrl && variant === 'default'}
 			<div class="relative h-40 overflow-hidden">
@@ -50,8 +50,8 @@
 		{/if}
 
 		<Card.Header class="{variant === 'compact' ? 'p-3' : 'p-4'} pb-2">
-			<div class="flex items-start justify-between gap-2">
-				<Card.Title class="{variant === 'compact' ? 'text-base' : 'text-lg'} font-semibold group-hover:text-tt-red transition-colors">
+			<div class="flex items-start justify-between gap-2 {variant === 'compact' ? 'min-h-[2.5rem]' : 'min-h-[3rem]'}">
+				<Card.Title class="{variant === 'compact' ? 'text-base' : 'text-lg'} font-semibold group-hover:text-tt-red transition-colors line-clamp-2">
 					{festival.name}
 				</Card.Title>
 				{#if variant === 'compact' || !festival.coverImageUrl}
@@ -63,7 +63,7 @@
 		</Card.Header>
 
 		<Card.Content class="{variant === 'compact' ? 'p-3' : 'p-4'} pt-0 flex-grow flex flex-col">
-			<p class="text-sm text-muted-foreground line-clamp-2 mb-3 flex-grow">
+			<p class="text-sm text-muted-foreground line-clamp-2 mb-3 {variant === 'compact' ? 'min-h-[2.5rem]' : 'min-h-[2.75rem]'}">
 				{festival.summary}
 			</p>
 
