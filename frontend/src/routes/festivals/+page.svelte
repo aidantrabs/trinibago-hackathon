@@ -135,7 +135,7 @@
 			<div class="flex items-center justify-between">
 				<div>
 					<a href="/" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
-						<img src="/logo.png" alt="KULTUR" class="h-10 w-10" />
+						<img src="/logo.png" alt="" class="h-10 w-10 logo-img" loading="eager" width="40" height="40" />
 						<span class="text-xl font-bold text-tt-red">KULTUR</span>
 					</a>
 					<p class="text-sm text-muted-foreground">Your guide to Trinidad & Tobago's cultural celebrations</p>
