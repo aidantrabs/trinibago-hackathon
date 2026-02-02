@@ -135,6 +135,7 @@ See [docs/ROUTES.md](docs/ROUTES.md) for full API documentation.
 |:---------|:------------|
 | [docs/SETUP.md](docs/SETUP.md) | Local development setup guide |
 | [docs/ROUTES.md](docs/ROUTES.md) | API routes reference |
+| [docs/IMPLEMENTATION.md](docs/IMPLEMENTATION.md) | Technical deep-dive, architecture, issues & solutions |
 | [docs/DEMO.md](docs/DEMO.md) | Email template testing guide |
 | [docs/PLANNING.md](docs/PLANNING.md) | Original hackathon planning document |
 
