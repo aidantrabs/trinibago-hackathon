@@ -21,6 +21,11 @@
 <svelte:head>
 	<title>KULTUR | Your Guide to Trinidad & Tobago's Cultural Celebrations</title>
 	<meta name="description" content="Discover 20+ cultural festivals across Trinidad & Tobago. From Carnival to Hosay, find your next authentic cultural experience." />
+	<meta property="og:title" content="KULTUR | Trinidad & Tobago Cultural Festivals" />
+	<meta property="og:description" content="Discover 20+ cultural festivals across Trinidad & Tobago. From Carnival to Hosay, find your next authentic cultural experience." />
+	<meta property="og:url" content="https://kultur-tt.vercel.app" />
+	<meta name="twitter:title" content="KULTUR | Trinidad & Tobago Cultural Festivals" />
+	<meta name="twitter:description" content="Discover 20+ cultural festivals across Trinidad & Tobago." />
 </svelte:head>
 
 <div class="min-h-screen bg-background">
@@ -28,8 +33,9 @@
 	<header class="border-b bg-card/80 backdrop-blur-sm sticky top-0 z-50">
 		<div class="container max-w-6xl mx-auto px-4 py-4">
 			<div class="flex items-center justify-between">
-				<a href="/" class="text-xl font-bold text-tt-red hover:text-tt-red-dark transition-colors">
-					KULTUR
+				<a href="/" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
+					<img src="/logo.png" alt="KULTUR" class="h-10 w-10" />
+					<span class="text-xl font-bold text-tt-red">KULTUR</span>
 				</a>
 				<nav class="flex items-center gap-4">
 					<a href="/" class="text-sm font-medium text-tt-red">Home</a>
@@ -215,7 +221,10 @@
 		<div class="container max-w-6xl mx-auto px-4 py-8">
 			<div class="flex flex-col md:flex-row items-center justify-between gap-4">
 				<div class="text-center md:text-left">
-					<p class="font-semibold text-tt-red">KULTUR</p>
+					<div class="flex items-center gap-2 justify-center md:justify-start">
+						<img src="/logo.png" alt="KULTUR" class="h-8 w-8" />
+						<p class="font-semibold text-tt-red">KULTUR</p>
+					</div>
 					<p class="text-sm text-muted-foreground">Your guide to Trinidad & Tobago's cultural celebrations</p>
 				</div>
 				<p class="text-sm text-muted-foreground">

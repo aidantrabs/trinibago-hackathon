@@ -48,8 +48,9 @@
 	<header class="border-b bg-card/80 backdrop-blur-sm sticky top-0 z-50">
 		<div class="container max-w-6xl mx-auto px-4 py-4">
 			<div class="flex items-center justify-between">
-				<a href="/" class="text-xl font-bold text-tt-red hover:text-tt-red-dark transition-colors">
-					KULTUR
+				<a href="/" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
+					<img src="/logo.png" alt="KULTUR" class="h-10 w-10" />
+					<span class="text-xl font-bold text-tt-red">KULTUR</span>
 				</a>
 				<nav class="flex items-center gap-4">
 					<a href="/" class="text-sm hover:text-tt-red transition-colors">Home</a>
