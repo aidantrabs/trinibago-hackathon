@@ -50,5 +50,4 @@ jobs:
                     --memory 256Mi \
                     --cpu 1 \
                     --port 8080 \
-                    --set-secrets="DATABASE_URL=DATABASE_URL:latest,RESEND_API_KEY=RESEND_API_KEY:latest,ADMIN_API_KEY=ADMIN_API_KEY:latest" \
-                    --set-env-vars="^@^FROM_EMAIL=noreply@kultur-tt.app@BASE_URL=https://kultur-api-971304624476.us-central1.run.app@ALLOWED_ORIGINS=https://kultur-tt.app,https://www.kultur-tt.app,http://localhost:5173"
+                    --set-secrets="DATABASE_URL=DATABASE_URL:latest,RESEND_API_KEY=RESEND_API_KEY:latest,ADMIN_API_KEY=ADMIN_API_KEY:latest"
