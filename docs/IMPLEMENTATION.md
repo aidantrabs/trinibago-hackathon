@@ -23,47 +23,47 @@ Technical deep-dive into the KULTUR platform architecture, decisions, and lesson
 ## Architecture Overview
 
 ```
-┌────────────────────────────────────────────────────────────────────────────┐
-│                              PRODUCTION                                    │
-│                                                                            │
-│  ┌──────────────────────┐         ┌──────────────────────┐                 │
-│  │                      │         │                      │                 │
-│  │   kultur-tt.app      │  HTTPS  │  kultur-api.fly.dev  │                 │
-│  │   ──────────────     │────────▶│  ─────────────────   │                 │
-│  │                      │         │                      │                 │
-│  │   SvelteKit 2        │         │   Go 1.24 + Echo     │                 │
-│  │   Svelte 5           │         │                      │                 │
-│  │   TailwindCSS 4      │         │                      │                 │
-│  │   shadcn-svelte      │         │                      │                 │
-│  │                      │         │                      │                 │
-│  └──────────────────────┘         └──────────┬───────────┘                 │
-│           │                                  │                             │
-│           │ Vercel                           │ Fly.io                      │
-│           │                                  │                             │
-│           │                       ┌──────────┴───────────┐                 │
-│           │                       │                      │                 │
-│           │                       │   PostgreSQL         │                 │
-│           │                       │   ────────────       │                 │
-│           │                       │   Neon (Serverless)  │                 │
-│           │                       │                      │                 │
-│           │                       └──────────────────────┘                 │
-│           │                                                                │
-│           │                       ┌──────────────────────┐                 │
-│           │                       │                      │                 │
-│           └──────────────────────▶│   Resend             │                 │
-│             (logo in emails)      │   ────────────       │                 │
-│                                   │   noreply@           │                 │
-│                                   │   kultur-tt.app      │                 │
-│                                   │                      │                 │
-│                                   └──────────────────────┘                 │
-│                                                                            │
-└────────────────────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────────────────────────┐
+│                              PRODUCTION                                          │
+│                                                                                  │
+│  ┌──────────────────────┐         ┌──────────────────────┐                       │
+│  │                      │         │                      │                       │
+│  │   kultur-tt.app      │  HTTPS  │  kultur-api-971304624476.us-central1.run.app │
+│  │   ──────────────     │────────▶│  ─────────────────   │                       │
+│  │                      │         │                      │                       │
+│  │   SvelteKit 2        │         │   Go 1.24 + Echo     │                       │
+│  │   Svelte 5           │         │                      │                       │
+│  │   TailwindCSS 4      │         │                      │                       │
+│  │   shadcn-svelte      │         │                      │                       │
+│  │                      │         │                      │                       │
+│  └──────────────────────┘         └──────────┬───────────┘                       │
+│           │                                  │                                   │
+│           │ Vercel                           │ Cloud Run                         │
+│           │                                  │                                   │
+│           │                       ┌──────────┴───────────┐                       │
+│           │                       │                      │                       │
+│           │                       │   PostgreSQL         │                       │
+│           │                       │   ────────────       │                       │
+│           │                       │   Neon (Serverless)  │                       │
+│           │                       │                      │                       │
+│           │                       └──────────────────────┘                       │
+│           │                                                                      │
+│           │                       ┌──────────────────────┐                       │
+│           │                       │                      │                       │
+│           └──────────────────────▶│   Resend             │                       │
+│             (logo in emails)      │   ────────────       │                       │
+│                                   │   noreply@           │                       │
+│                                   │   kultur-tt.app      │                       │
+│                                   │                      │                       │
+│                                   └──────────────────────┘                       │
+│                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ### Data Flow
 
 1. **User visits** `kultur-tt.app` → Vercel serves SvelteKit app
-2. **App fetches data** from `kultur-api.fly.dev/api/*`
+2. **App fetches data** from `kultur-api-971304624476.us-central1.run.app/api/*`
 3. **Backend queries** Neon PostgreSQL database
 4. **Email actions** trigger Resend API calls
 5. **Emails include** logo from `kultur-tt.app/logo.png`
@@ -71,6 +71,19 @@ Technical deep-dive into the KULTUR platform architecture, decisions, and lesson
 ---
 
 ## Tech Stack
+
+![SvelteKit](assets/tech-icons/sveltekit.svg)
+![TypeScript](assets/tech-icons/typescript.svg)
+![TailwindCSS](assets/tech-icons/tailwindcss.svg)
+![Vite](assets/tech-icons/vite.svg)
+![Vercel](assets/tech-icons/vercel.svg)
+![Go](assets/tech-icons/go.svg)
+![PostgreSQL](assets/tech-icons/postgresql.svg)
+![Cloud Run](assets/tech-icons/cloudrun.svg)
+![Neon](assets/tech-icons/neon.svg)
+![GitHub Actions](assets/tech-icons/github-actions.svg)
+![Resend](assets/tech-icons/resend.svg)
+![Biome](assets/tech-icons/biome.svg)
 
 ### Frontend
 
@@ -101,7 +114,7 @@ Technical deep-dive into the KULTUR platform architecture, decisions, and lesson
 | Service | Provider | Purpose |
 |:--------|:---------|:--------|
 | Frontend Hosting | Vercel | CDN, automatic deploys |
-| Backend Hosting | Fly.io | Container hosting, global edge |
+| Backend Hosting | Cloud Run | Serverless containers, auto-scaling |
 | Database | Neon | Serverless PostgreSQL |
 | Email | Resend | Transactional emails |
 | Domain | Name.com | kultur-tt.app |
@@ -213,7 +226,6 @@ backend/
 │   ├── migrations/             # Database migrations
 │   └── queries/                # sqlc query definitions
 ├── Dockerfile
-├── fly.toml
 └── go.mod
 ```
 
@@ -375,7 +387,7 @@ For custom domain emails (`noreply@kultur-tt.app`):
 
 **Environment Variables:**
 ```
-PUBLIC_API_URL=https://kultur-api.fly.dev
+PUBLIC_API_URL=https://kultur-api-971304624476.us-central1.run.app
 PUBLIC_DATA_SOURCE=api
 ```
 
@@ -384,26 +396,17 @@ PUBLIC_DATA_SOURCE=api
 - A record: `76.76.21.21`
 - CNAME: `cname.vercel-dns.com`
 
-### Backend (Fly.io)
+### Backend (Cloud Run)
 
-**fly.toml:**
-```toml
-app = "kultur-api"
-primary_region = "dfw"  # Dallas-Fort Worth
-
-[build]
-  dockerfile = "Dockerfile"
-
-[env]
-  PORT = "8080"
-
-[http_service]
-  internal_port = 8080
-  force_https = true
-
-[[vm]]
-  size = "shared-cpu-1x"
-  memory = "256mb"
+**Deployment Command:**
+```bash
+gcloud run deploy kultur-api \
+  --source ./backend \
+  --region us-central1 \
+  --allow-unauthenticated \
+  --min-instances 0 \
+  --max-instances 2 \
+  --memory 256Mi
 ```
 
 **Dockerfile:**
@@ -423,14 +426,15 @@ EXPOSE 8080
 CMD ["./server"]
 ```
 
-**Secrets:**
+**Environment Variables (Cloud Run Console or CLI):**
 ```bash
-fly secrets set DATABASE_URL="postgres://..."
-fly secrets set RESEND_API_KEY="re_..."
-fly secrets set ADMIN_API_KEY="..."
-fly secrets set FROM_EMAIL="noreply@kultur-tt.app"
-fly secrets set BASE_URL="https://kultur-api.fly.dev"
-fly secrets set ALLOWED_ORIGINS="https://kultur-tt.app"
+gcloud run services update kultur-api --region us-central1 \
+  --set-secrets="DATABASE_URL=DATABASE_URL:latest" \
+  --set-secrets="RESEND_API_KEY=RESEND_API_KEY:latest" \
+  --set-secrets="ADMIN_API_KEY=ADMIN_API_KEY:latest" \
+  --set-env-vars="FROM_EMAIL=noreply@kultur-tt.app" \
+  --set-env-vars="BASE_URL=https://kultur-api-971304624476.us-central1.run.app" \
+  --set-env-vars="ALLOWED_ORIGINS=https://kultur-tt.app"
 ```
 
 ---
@@ -458,11 +462,11 @@ img = Image.open("logo.png").convert("RGBA")
 
 **Problem:** Vercel env vars had `\n` appended, causing API calls to fail silently.
 
-**Symptom:** `PUBLIC_API_URL="https://kultur-api.fly.dev\n"` → fetch failed
+**Symptom:** `PUBLIC_API_URL="https://kultur-api-971304624476.us-central1.run.app\n"` → fetch failed
 
 **Solution:** Re-added env vars using `echo -n` to avoid newlines:
 ```bash
-echo -n "https://kultur-api.fly.dev" | vercel env add PUBLIC_API_URL production
+echo -n "https://kultur-api-971304624476.us-central1.run.app" | vercel env add PUBLIC_API_URL production
 ```
 
 ### 3. Resend Test Domain Limitation
@@ -490,7 +494,7 @@ GitHub Actions automates testing, formatting checks, and deployment.
 |:---------|:--------|:--------|
 | `ci.yml` | Push/PR to main | Lint, type check, build, test |
 | `format-check.yml` | PR to main | Verify code formatting |
-| `deploy-backend.yml` | Push to main (backend changes) | Deploy to Fly.io |
+| `deploy-backend.yml` | Push to main (backend changes) | Deploy to Cloud Run |
 
 ### CI Workflow (`ci.yml`)
 
@@ -517,22 +521,19 @@ Runs on pull requests to ensure code style consistency:
 
 ### Deploy Backend (`deploy-backend.yml`)
 
-Automatically deploys to Fly.io when:
+Automatically deploys to Cloud Run when:
 - Changes are pushed to `backend/**`
 - Workflow is manually dispatched
 
-```yaml
-- name: Deploy
-  run: flyctl deploy --remote-only
-  env:
-      FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
-```
+Uses Workload Identity Federation for secure, keyless authentication to GCP.
 
 ### Required Secrets
 
 | Secret | Purpose |
 |:-------|:--------|
-| `FLY_API_TOKEN` | Fly.io deployment authentication |
+| `GCP_PROJECT_ID` | Google Cloud project ID |
+| `GCP_WORKLOAD_IDENTITY_PROVIDER` | Workload Identity provider |
+| `GCP_SERVICE_ACCOUNT` | Service account for deployment |
 
 ---
 
