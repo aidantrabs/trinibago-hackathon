@@ -24,8 +24,8 @@
 	}
 </script>
 
-<a href="/festivals/{festival.slug}" class="block group">
-	<Card.Root class="overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-tt-red/50 hover:-translate-y-1">
+<a href="/festivals/{festival.slug}" class="block group h-full">
+	<Card.Root class="h-full overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-tt-red/50 hover:-translate-y-1">
 		{#if festival.coverImageUrl && variant === 'default'}
 			<div class="relative h-40 overflow-hidden">
 				<img
@@ -62,12 +62,12 @@
 			</div>
 		</Card.Header>
 
-		<Card.Content class="{variant === 'compact' ? 'p-3' : 'p-4'} pt-0">
-			<p class="text-sm text-muted-foreground line-clamp-2 mb-3">
+		<Card.Content class="{variant === 'compact' ? 'p-3' : 'p-4'} pt-0 flex-grow flex flex-col">
+			<p class="text-sm text-muted-foreground line-clamp-2 mb-3 flex-grow">
 				{festival.summary}
 			</p>
-			
-			<div class="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
+
+			<div class="flex flex-wrap items-center gap-3 text-xs text-muted-foreground mt-auto">
 				<span class="flex items-center gap-1">
 					<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 						<rect width="18" height="18" x="3" y="4" rx="2" ry="2"/>
