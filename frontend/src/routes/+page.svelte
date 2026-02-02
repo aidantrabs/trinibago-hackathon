@@ -34,7 +34,7 @@
 		<div class="container max-w-6xl mx-auto px-4 py-4">
 			<div class="flex items-center justify-between">
 				<a href="/" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
-					<img src="/logo.png" alt="KULTUR" class="h-10 w-10" />
+					<img src="/logo.png" alt="" class="h-10 w-10 logo-img" loading="eager" width="40" height="40" />
 					<span class="text-xl font-bold text-tt-red">KULTUR</span>
 				</a>
 				<nav class="flex items-center gap-4">
@@ -222,7 +222,7 @@
 			<div class="flex flex-col md:flex-row items-center justify-between gap-4">
 				<div class="text-center md:text-left">
 					<div class="flex items-center gap-2 justify-center md:justify-start">
-						<img src="/logo.png" alt="KULTUR" class="h-8 w-8" />
+						<img src="/logo.png" alt="" class="h-8 w-8 logo-img" loading="eager" width="32" height="32" />
 						<p class="font-semibold text-tt-red">KULTUR</p>
 					</div>
 					<p class="text-sm text-muted-foreground">Your guide to Trinidad & Tobago's cultural celebrations</p>
