@@ -389,7 +389,7 @@ PUBLIC_DATA_SOURCE=api
 **fly.toml:**
 ```toml
 app = "kultur-api"
-primary_region = "mia"  # Miami (closest to Trinidad)
+primary_region = "dfw"  # Dallas-Fort Worth
 
 [build]
   dockerfile = "Dockerfile"
