@@ -271,8 +271,7 @@ jobs:
                     --memory 256Mi \
                     --cpu 1 \
                     --port 8080 \
-                    --set-secrets="DATABASE_URL=DATABASE_URL:latest,RESEND_API_KEY=RESEND_API_KEY:latest,ADMIN_API_KEY=ADMIN_API_KEY:latest" \
-                    --set-env-vars="..." # See env vars section
+                    --set-secrets="DATABASE_URL=DATABASE_URL:latest,RESEND_API_KEY=RESEND_API_KEY:latest,ADMIN_API_KEY=ADMIN_API_KEY:latest"
 ```
 
 ---
@@ -432,6 +431,21 @@ if errors.Is(err, service.ErrEmailAlreadyExists) {
 **Problem:** Setting `PORT=8080` in `--set-env-vars` failed because Cloud Run reserves this variable.
 
 **Solution:** Remove `PORT` from env vars - Cloud Run automatically sets it and the app reads it correctly.
+
+### 8. GitHub Actions Deploy Fails with Comma in Env Vars
+
+**Problem:** The `--set-env-vars` flag in GitHub Actions workflow failed because `ALLOWED_ORIGINS` contains commas, even when using the `^@^` custom separator.
+
+**Cause:** The gcloud CLI still interprets commas inside values as separators, regardless of the custom delimiter prefix.
+
+**Solution:** Don't set environment variables on every deploy. Configure them once on the Cloud Run service using `--env-vars-file`, then only update the image and secrets in the CI/CD workflow:
+
+```yaml
+# Only set secrets (no commas), not env vars
+--set-secrets="DATABASE_URL=DATABASE_URL:latest,RESEND_API_KEY=RESEND_API_KEY:latest,ADMIN_API_KEY=ADMIN_API_KEY:latest"
+```
+
+Environment variables rarely change and can be updated manually when needed.
 
 ---
 
