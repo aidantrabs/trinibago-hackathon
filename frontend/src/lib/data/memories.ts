@@ -1,6 +1,7 @@
 import { config } from '$lib/config';
 import { festivalsApi, memoriesApi } from '$lib/api';
 import type { Memory } from '$lib/types/festival';
+// import memoriesData from
 
 // Mock memories data for development
 const mockMemories: Memory[] = [
@@ -126,30 +127,29 @@ const mockMemories: Memory[] = [
  * Get memories for a specific festival - uses API or mock data based on config
  */
 export async function getMemoriesByFestivalSlug(slug: string): Promise<Memory[]> {
-    if (config.useApi) {
-        try {
-            return await festivalsApi.getMemories(slug);
-        } catch (error) {
-            console.error(
-                `Failed to fetch memories for ${slug} from API, falling back to mock data`,
-                error
-            );
-            // For mock fallback, we need to find the festival ID by slug
-            const { festivals } = await import('./festivals');
-            const festival = festivals.find((f) => f.slug === slug);
-            if (!festival) return [];
-            return mockMemories.filter(
-                (m) => m.festivalId === festival.id && m.status === 'approved'
-            );
-        }
+  if (config.useApi) {
+    try {
+      return await festivalsApi.getMemories(slug);
+    } catch (error) {
+      console.error(`Failed to fetch memories for ${slug} from API, falling back to mock data`, error);
+      // For mock fallback, we need to find the festival ID by slug
+      const { festivals } = await import('./festivals');
+      const festival = festivals.find(f => f.slug === slug);
+      if (!festival) return [];
+      return mockMemories.filter(
+        (m) => m.festivalId === festival.id && m.status === 'approved'
+      );
     }
-
-    // Mock data mode - find festival by slug
-    const { festivals } = await import('./festivals');
-    const festival = festivals.find((f) => f.slug === slug);
-    if (!festival) return [];
-
-    return mockMemories.filter((m) => m.festivalId === festival.id && m.status === 'approved');
+  }
+  
+  // Mock data mode - find festival by slug
+  const { festivals } = await import('./festivals');
+  const festival = festivals.find(f => f.slug === slug);
+  if (!festival) return [];
+  
+  return mockMemories.filter(
+    (m) => m.festivalId === slug && m.status === 'approved'
+  );
 }
 
 /**
