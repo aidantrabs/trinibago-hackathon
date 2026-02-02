@@ -6,6 +6,7 @@
 	import { Separator } from '$lib/components/ui/separator';
 	import { FestivalCard } from '$lib/components/calendar';
 	import { MemoryCard, MemoryForm } from '$lib/components/memories';
+	import { NewsletterSignup } from '$lib/components/newsletter';
 	import { heritageLabels, regionLabels } from '$lib/types/festival';
 	import type { HeritageType } from '$lib/types/festival';
 	import { formatDateRange, getRelativeTime } from '$lib/utils/calendar';
@@ -400,6 +401,9 @@
 						<p>✓ Ask before photographing people</p>
 					</Card.Content>
 				</Card.Root>
+
+				<!-- Newsletter Signup -->
+				<NewsletterSignup variant="compact" />
 			</aside>
 		</div>
 
