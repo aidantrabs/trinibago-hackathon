@@ -41,7 +41,7 @@
 
 	<!-- Hero Section -->
 	<section class="relative bg-linear-to-br from-tt-black via-tt-black to-tt-red/20 text-white">
-		<div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1551972251-12070d63502a?w=1920')] bg-cover bg-center opacity-20"></div>
+		<div class="absolute inset-0 bg-[url('https://www.cultursmag.com/wp-content/uploads/2024/05/Carnival-in-Trinidad-Photo-credit-Hayden-Greene.jpg')] bg-cover bg-center opacity-20"></div>
 		<div class="relative container max-w-6xl mx-auto px-4 py-20 lg:py-32">
 			<div class="max-w-3xl">
 				<h1 class="text-4xl lg:text-6xl font-bold mb-6">
@@ -59,7 +59,7 @@
 							<path d="m9 18 6-6-6-6"/>
 						</svg>
 					</Button>
-					<Button href="#this-week" variant="outline" size="lg" class="border-white text-black hover:bg-gray-100">
+					<Button href="#this-week" variant="outline" size="lg" class="border-white text-black hover:bg-gray-1000">
 						What's Coming Up
 					</Button>
 				</div>
@@ -219,7 +219,7 @@
 					<p class="text-sm text-muted-foreground">Your guide to Trinidad & Tobago's cultural celebrations</p>
 				</div>
 				<p class="text-sm text-muted-foreground">
-					Built with ❤️ · TrinbagoTech Hackathon 2026
+					Trini2DBone 2026  · TrinbagoTech Hackathon 2026
 				</p>
 			</div>
 		</div>

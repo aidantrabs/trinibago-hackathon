@@ -400,7 +400,7 @@
 	<!-- Footer -->
 	<footer class="border-t bg-card mt-12">
 		<div class="container max-w-6xl mx-auto px-4 py-6 text-center text-sm text-muted-foreground">
-			<p>Built with ❤️ for Trinidad & Tobago · TrinbagoTech Hackathon 2026</p>
+			<p>Trini2DBone 2026  for Trinidad & Tobago · TrinbagoTech Hackathon 2026</p>
 		</div>
 	</footer>
 </div>

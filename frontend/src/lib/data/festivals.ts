@@ -36,7 +36,7 @@ The observance is marked by the building of elaborate tadjahs (ornate tomb repli
 **Timing**: Processions happen after sunset
 **Getting there**: Parking limited in St. James; consider taxi
 **Food**: Street vendors sell doubles and other local food nearby`,
-    coverImageUrl: 'https://images.unsplash.com/photo-1604608672516-f1b9b1d37076?w=800',
+    coverImageUrl: 'https://www.cultursmag.com/wp-content/uploads/2024/05/Carnival-in-Trinidad-Photo-credit-Hayden-Greene.jpg',
     galleryImages: [],
     videoEmbeds: [],
     isPublished: true,
@@ -73,7 +73,7 @@ The Santa Rosa Festival honors their patron saint while celebrating and preservi
 **Timing**: Usually a Sunday in late August
 **Getting there**: Arima is accessible by bus from Port of Spain
 **What to bring**: Cash for crafts and food, water, sunscreen`,
-    coverImageUrl: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800',
+    coverImageUrl: 'https://www.cultursmag.com/wp-content/uploads/2024/05/Carnival-in-Trinidad-Photo-credit-Hayden-Greene.jpg',
     galleryImages: [],
     videoEmbeds: [],
     isPublished: true,
@@ -107,7 +107,7 @@ The week includes the significant Smoke Ceremony, traditionally used for purific
     practicalInfo: `**Primary location**: Arima and Port of Spain
 **Check**: Santa Rosa First Peoples Community social media for schedule
 **Best for**: Families, students, anyone interested in T&T history`,
-    coverImageUrl: 'https://images.unsplash.com/photo-1596727147705-61a532a659bd?w=800',
+    coverImageUrl: 'https://www.cultursmag.com/wp-content/uploads/2024/05/Carnival-in-Trinidad-Photo-credit-Hayden-Greene.jpg',
     galleryImages: [],
     videoEmbeds: [],
     isPublished: true,
@@ -143,7 +143,7 @@ Trinidad & Tobago's Divali celebration is the largest in the English-speaking Ca
 **Traffic**: Expect heavy traffic; consider arriving early
 **Best night to visit**: The main Divali night (November 8th in 2026)
 **Cost**: Entrance to Nagar is free; budget for food and crafts`,
-    coverImageUrl: 'https://images.unsplash.com/photo-1574265935772-b5e89d772e50?w=800',
+    coverImageUrl: 'https://www.cultursmag.com/wp-content/uploads/2024/05/Carnival-in-Trinidad-Photo-credit-Hayden-Greene.jpg',
     galleryImages: [],
     videoEmbeds: [],
     isPublished: true,
@@ -178,7 +178,7 @@ In Trinidad, Phagwa has become one of the most inclusive celebrations, with peop
 **Timing**: Usually mid-morning to afternoon
 **What to bring**: Old clothes, sandals, waterproof phone case
 **Warning**: Colors are semi-permanent - oil your hair and skin beforehand`,
-    coverImageUrl: 'https://images.unsplash.com/photo-1576444356170-66073046b1bc?w=800',
+    coverImageUrl: 'https://www.cultursmag.com/wp-content/uploads/2024/05/Carnival-in-Trinidad-Photo-credit-Hayden-Greene.jpg',
     galleryImages: [],
     videoEmbeds: [],
     isPublished: true,
@@ -214,7 +214,7 @@ The day is marked by cultural celebrations, African-inspired dress, and remembra
 **Main events**: Port of Spain, San Fernando
 **Emancipation Village**: Queen's Park Savannah, Port of Spain
 **Dress code**: African attire encouraged but not required`,
-    coverImageUrl: 'https://images.unsplash.com/photo-1590845947670-c009801ffa74?w=800',
+    coverImageUrl: 'https://www.cultursmag.com/wp-content/uploads/2024/05/Carnival-in-Trinidad-Photo-credit-Hayden-Greene.jpg',
     galleryImages: [],
     videoEmbeds: [],
     isPublished: true,
@@ -250,7 +250,7 @@ On March 30, 1951, the ordinance was repealed. Trinidad & Tobago became the firs
     practicalInfo: `**Public holiday**: Yes
 **Services**: Spiritual Baptist churches throughout T&T
 **What to wear**: Modest, respectful attire; women may want to bring a head covering`,
-    coverImageUrl: 'https://images.unsplash.com/photo-1438232992991-995b7058bbb3?w=800',
+    coverImageUrl: 'https://www.cultursmag.com/wp-content/uploads/2024/05/Carnival-in-Trinidad-Photo-credit-Hayden-Greene.jpg',
     galleryImages: [],
     videoEmbeds: [],
     isPublished: true,
@@ -286,7 +286,7 @@ Trinidad's Ramleela tradition dates back to the arrival of Indian indentured lab
 **Timing**: Nightly performances during Navaratri (nine nights)
 **Duration**: Each night's performance runs 2-4 hours
 **Best night**: Final night for Ravana's burning (Dussehra)`,
-    coverImageUrl: 'https://images.unsplash.com/photo-1582639510494-c80b5de9f148?w=800',
+    coverImageUrl: 'https://www.cultursmag.com/wp-content/uploads/2024/05/Carnival-in-Trinidad-Photo-credit-Hayden-Greene.jpg',
     galleryImages: [],
     videoEmbeds: [],
     isPublished: true,
@@ -323,7 +323,7 @@ The tradition reflects Trinidad's multicultural heritage, blending Spanish lyric
 **Major events**: National Parang Finals, community parang competitions
 **Best venues**: Paramin, Lopinot, community centres nationwide
 **Food pairings**: Pastelles, black cake, sorrel, ponche de crème`,
-    coverImageUrl: 'https://images.unsplash.com/photo-1482575832494-771f74bf6857?w=800',
+    coverImageUrl: 'https://www.cultursmag.com/wp-content/uploads/2024/05/Carnival-in-Trinidad-Photo-credit-Hayden-Greene.jpg',
     galleryImages: [],
     videoEmbeds: [],
     isPublished: true,
@@ -360,7 +360,7 @@ Today's Carnival features massive costume bands, soca music, J'ouvert (the pre-d
 **J'ouvert**: Monday 4am start
 **Costume price**: $500-$3000+ USD depending on band
 **Must-see**: Panorama semis and finals (Savannah)`,
-    coverImageUrl: 'https://images.unsplash.com/photo-1551972251-12070d63502a?w=800',
+    coverImageUrl: 'https://www.cultursmag.com/wp-content/uploads/2024/05/Carnival-in-Trinidad-Photo-credit-Hayden-Greene.jpg',
     galleryImages: [],
     videoEmbeds: [],
     isPublished: true,
